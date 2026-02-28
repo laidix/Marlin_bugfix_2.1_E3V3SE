@@ -1730,7 +1730,7 @@
  */
 // #define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
 #if ENABLED(PLATFORM_OFFSET)
- #define NOZZLE_TO_PROBE_OFFSET { -23.0, -14.5, 2.65 }
+ #define NOZZLE_TO_PROBE_OFFSET { -24.25, -15, 0 }
 #endif 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 // #define PROBING_TOOL 0
@@ -1992,8 +1992,8 @@
   // #define Y_MIN_POS -22       //Platform moves forward rock_20220927  - Forward, +Backward 2.5
 
   #if ENABLED(WUHAN_CHENGE_PLATFORM)  //Wuhan modified structure
-    #define X_MIN_POS    -6    //Platform moves left
-    #define  Y_MIN_POS   -14
+    #define X_MIN_POS    -13    //Platform moves left
+    #define  Y_MIN_POS   -15
   #else
     #define X_MIN_POS -11    //Platform moves left
     #define  Y_MIN_POS   -18 //Platform moves forward rock_20220927
@@ -2002,13 +2002,13 @@
 #define X_MIN_POS -4
 #define Y_MIN_POS -17
 #endif
-#define Z_MIN_POS -3
+#define Z_MIN_POS 0
 #if ENABLED(WUHAN_CHENGE_PLATFORM)  //Wuhan modified structure
-  #define X_MAX_POS 230
+  #define X_MAX_POS X_BED_SIZE
 #else
   #define X_MAX_POS X_BED_SIZE + 5
 #endif
-#define Y_MAX_POS 230
+#define Y_MAX_POS Y_BED_SIZE + 7
 #define Z_MAX_POS 250  //Since the slicing software does not limit the height of 250mm, it is temporarily increased by 5mm.  Rock——20230105  
 
 
@@ -2317,7 +2317,7 @@
 #if ANY(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 5
+  #define GRID_MAX_POINTS_X 6
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Probe along the Y axis, advancing X after each column
@@ -2473,8 +2473,8 @@
 #define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
-  #define Z_SAFE_HOMING_X_POINT 134  // (mm) X point for Z homing
-  #define Z_SAFE_HOMING_Y_POINT 123  // (mm) Y point for Z homing
+  #define Z_SAFE_HOMING_X_POINT X_CENTER  // (mm) X point for Z homing
+  #define Z_SAFE_HOMING_Y_POINT Y_CENTER  // (mm) Y point for Z homing
   //#define Z_SAFE_HOMING_POINT_ABSOLUTE  // Ignore home offsets (M206) for Z homing position
 #endif
 
