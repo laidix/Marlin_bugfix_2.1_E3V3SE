@@ -1146,7 +1146,7 @@
  * Enable/disable and set parameters with G-code M493 and M494.
  * See ft_types.h for named values used by FTM options.
  */
-// #define FT_MOTION
+#define FT_MOTION
 #if ENABLED(FT_MOTION)
   #define FTM_IS_DEFAULT_MOTION               // Use FT Motion as the factory default?
   //#define FT_MOTION_MENU                      // Provide a MarlinUI menu to set M493 and M494 parameters
@@ -1154,12 +1154,12 @@
 
   #define FTM_DEFAULT_DYNFREQ_MODE dynFreqMode_DISABLED // Default mode of dynamic frequency calculation. (DISABLED, Z_BASED, MASS_BASED)
 
-  #define FTM_DEFAULT_SHAPER_X      ftMotionShaper_3HEI // Default shaper mode on X axis (NONE, ZV, ZVD, ZVDD, ZVDDD, EI, 2HEI, 3HEI, MZV)
+  #define FTM_DEFAULT_SHAPER_X      ftMotionShaper_MZV // Default shaper mode on X axis (NONE, ZV, ZVD, ZVDD, ZVDDD, EI, 2HEI, 3HEI, MZV)
   #define FTM_SHAPING_DEFAULT_FREQ_X   40.0f    // (Hz) Default peak frequency used by input shapers
   #define FTM_SHAPING_ZETA_X            0.1f    // Zeta used by input shapers for X axis
   #define FTM_SHAPING_V_TOL_X           0.05f   // Vibration tolerance used by EI input shapers for X axis
 
-  #define FTM_DEFAULT_SHAPER_Y      ftMotionShaper_3HEI // Default shaper mode on Y axis
+  #define FTM_DEFAULT_SHAPER_Y      ftMotionShaper_MZV // Default shaper mode on Y axis
   #define FTM_SHAPING_DEFAULT_FREQ_Y   42.0f    // (Hz) Default peak frequency used by input shapers
   #define FTM_SHAPING_ZETA_Y            0.1f    // Zeta used by input shapers for Y axis
   #define FTM_SHAPING_V_TOL_Y           0.05f   // Vibration tolerance used by EI input shapers for Y axis
@@ -1182,14 +1182,14 @@
   #if ENABLED(FTM_SMOOTHING)
     #define FTM_MAX_SMOOTHING_TIME      0.10f   // (s) Maximum smoothing time. Higher values consume more RAM.
                                                 // Increase smoothing time to reduce jerky motion, ghosting and noises.
-    #define FTM_SMOOTHING_TIME_X        0.00f   // (s) Smoothing time for X axis. Zero means disabled.
-    #define FTM_SMOOTHING_TIME_Y        0.00f   // (s) Smoothing time for Y axis
-    #define FTM_SMOOTHING_TIME_Z        0.00f   // (s) Smoothing time for Z axis
+    #define FTM_SMOOTHING_TIME_X        0.02f   // (s) Smoothing time for X axis. Zero means disabled.
+    #define FTM_SMOOTHING_TIME_Y        0.02f   // (s) Smoothing time for Y axis
+    #define FTM_SMOOTHING_TIME_Z        0.01f   // (s) Smoothing time for Z axis
     #define FTM_SMOOTHING_TIME_E        0.02f   // (s) Smoothing time for E axis. Prevents noise/skipping from LA by
                                                 //     smoothing acceleration peaks, which may also smooth curved surfaces.
   #endif
 
-  #define FTM_TRAJECTORY_TYPE   TRAPEZOIDAL // Block acceleration profile (TRAPEZOIDAL, POLY5, POLY6)
+  #define FTM_TRAJECTORY_TYPE   POLY6       // Block acceleration profile (TRAPEZOIDAL, POLY5, POLY6)
                                             // TRAPEZOIDAL: Continuous Velocity. Max acceleration is respected.
                                             // POLY5:       Like POLY6 with 1.5x but uses less CPU.
                                             // POLY6:       Continuous Acceleration (aka S_CURVE).
@@ -1229,7 +1229,7 @@
 //#define INPUT_SHAPING_Z
 #if ANY(INPUT_SHAPING_X, INPUT_SHAPING_Y, INPUT_SHAPING_Z)
   
-  // #define DWIN_INPUT_SHAPING_MENU        // Enable LCD Menu to Configure Input Shaping parameters
+  #define DWIN_INPUT_SHAPING_MENU        // Enable LCD Menu to Configure Input Shaping parameters
 
   #if ENABLED(INPUT_SHAPING_X)
     #define SHAPING_FREQ_X  42.0        // (Hz) The default dominant resonant frequency on the X axis.

@@ -2,7 +2,7 @@
  * Config.h - Marlin Firmware distilled configuration
  * Usage: Place this file in the 'Marlin' folder with the name 'Config.h'.
  *
- * Exported by Marlin build on 2026-02-28 at 18:27:25.
+ * Exported by Marlin build on 2026-02-28 at 18:49:26.
  */
 
 //
@@ -49,12 +49,12 @@
 // Geometry
 //
 #define X_BED_SIZE                               220
-#define X_MIN_POS                                -6
-#define X_MAX_POS                                230
+#define X_MIN_POS                                -13
+#define X_MAX_POS                                X_BED_SIZE
 #define Y_BED_SIZE                               220
-#define Y_MIN_POS                                -14
-#define Y_MAX_POS                                230
-#define Z_MIN_POS                                -3
+#define Y_MIN_POS                                -15
+#define Y_MAX_POS                                Y_BED_SIZE + 7
+#define Z_MIN_POS                                0
 #define Z_MAX_POS                                250
 #define MIN_SOFTWARE_ENDSTOPS
 #define MAX_SOFTWARE_ENDSTOPS
@@ -76,9 +76,9 @@
 #define HOMING_BUMP_DIVISOR                      { 2, 2, 4 }
 #define VALIDATE_HOMING_ENDSTOPS
 #define HOMING_BUMP_MM                           { 5, 5, 2 }
-#define Z_SAFE_HOMING_X_POINT                    134
+#define Z_SAFE_HOMING_X_POINT                    X_CENTER
 #define Z_AFTER_HOMING                           10
-#define Z_SAFE_HOMING_Y_POINT                    123
+#define Z_SAFE_HOMING_Y_POINT                    Y_CENTER
 #define Z_CLEARANCE_FOR_HOMING                   10
 #define Z_SAFE_HOMING
 
@@ -135,12 +135,44 @@
 //
 // Motion Control
 //
+#define FTM_TRAJECTORY_TYPE                      POLY6
+#define FTM_SHAPING_DEFAULT_FREQ_E               21.0f
+#define FT_MOTION
+#define FTM_DEFAULT_DYNFREQ_MODE                 dynFreqMode_DISABLED
+#define FTM_SHAPING_DEFAULT_FREQ_Y               42.0f
+#define FTM_BUFFER_SIZE                          128
+#define FTM_SHAPING_V_TOL_E                      0.05f
+#define FTM_SHAPING_V_TOL_X                      0.05f
+#define FTM_SHAPING_V_TOL_Y                      0.05f
+#define FTM_SHAPING_V_TOL_Z                      0.05f
 #define SHAPING_ZETA_X                           0.15
 #define SHAPING_ZETA_Y                           0.15
 #define INPUT_SHAPING_X
+#define FTM_STEPPER_FS                           2'000'000
 #define INPUT_SHAPING_Y
+#define FTM_POLY6_ACCELERATION_OVERSHOOT         1.875f
+#define FTM_DEFAULT_SHAPER_E                     ftMotionShaper_NONE
+#define FTM_DEFAULT_SHAPER_X                     ftMotionShaper_MZV
+#define FTM_DEFAULT_SHAPER_Y                     ftMotionShaper_MZV
+#define FTM_DEFAULT_SHAPER_Z                     ftMotionShaper_NONE
 #define SHAPING_FREQ_X                           42.0
 #define SHAPING_FREQ_Y                           40.0
+#define FTM_MAX_SMOOTHING_TIME                   0.10f
+#define FTM_SMOOTHING_TIME_E                     0.02f
+#define FTM_SMOOTHING_TIME_X                     0.02f
+#define FTM_SMOOTHING_TIME_Y                     0.02f
+#define FTM_SMOOTHING_TIME_Z                     0.01f
+#define FTM_SMOOTHING
+#define FTM_MIN_SHAPE_FREQ                       20
+#define FTM_SHAPING_ZETA_E                       0.03f
+#define FTM_SHAPING_ZETA_X                       0.1f
+#define FTM_SHAPING_ZETA_Y                       0.1f
+#define FTM_SHAPING_ZETA_Z                       0.03f
+#define FTM_IS_DEFAULT_MOTION
+#define FTM_SHAPING_DEFAULT_FREQ_X               40.0f
+#define FTM_SHAPING_DEFAULT_FREQ_Z               21.0f
+#define DWIN_INPUT_SHAPING_MENU
+#define FTM_FS                                   1000
 
 //
 // Endstops
@@ -169,7 +201,7 @@
 #define Z_PROBE_FEEDRATE_SLOW                    (Z_PROBE_FEEDRATE_FAST / 2)
 #define PROBE_OFFSET_ZMAX                        10
 #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
-#define NOZZLE_TO_PROBE_OFFSET                   { -23.0, -14.5, 2.65 }
+#define NOZZLE_TO_PROBE_OFFSET                   { -24.25, -15, 0 }
 #define Z_AFTER_PROBING                          10
 #define EXTRA_PROBING                            0
 #define USE_PROBE_FOR_Z_HOMING
@@ -317,7 +349,7 @@
 #define MESH_TEST_BED_TEMP                       60
 #define G26_RETRACT_MULTIPLIER                   1.0
 #define MESH_TEST_HOTEND_TEMP                    205
-#define GRID_MAX_POINTS_X                        5
+#define GRID_MAX_POINTS_X                        6
 #define G26_MESH_VALIDATION
 #define LEVELED_SEGMENT_LENGTH                   1.0
 #define G26_XY_FEEDRATE                          20
