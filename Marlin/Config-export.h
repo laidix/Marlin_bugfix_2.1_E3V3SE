@@ -2,7 +2,7 @@
  * Config.h - Marlin Firmware distilled configuration
  * Usage: Place this file in the 'Marlin' folder with the name 'Config.h'.
  *
- * Exported by Marlin build on 2026-01-06 at 14:43:35.
+ * Exported by Marlin build on 2026-02-28 at 18:27:25.
  */
 
 //
@@ -49,12 +49,12 @@
 // Geometry
 //
 #define X_BED_SIZE                               220
-#define X_MIN_POS                                -13
-#define X_MAX_POS                                X_BED_SIZE
+#define X_MIN_POS                                -6
+#define X_MAX_POS                                230
 #define Y_BED_SIZE                               220
-#define Y_MIN_POS                                -15
-#define Y_MAX_POS                                Y_BED_SIZE + 7
-#define Z_MIN_POS                                0
+#define Y_MIN_POS                                -14
+#define Y_MAX_POS                                230
+#define Z_MIN_POS                                -3
 #define Z_MAX_POS                                250
 #define MIN_SOFTWARE_ENDSTOPS
 #define MAX_SOFTWARE_ENDSTOPS
@@ -76,9 +76,9 @@
 #define HOMING_BUMP_DIVISOR                      { 2, 2, 4 }
 #define VALIDATE_HOMING_ENDSTOPS
 #define HOMING_BUMP_MM                           { 5, 5, 2 }
-#define Z_SAFE_HOMING_X_POINT                    X_CENTER
+#define Z_SAFE_HOMING_X_POINT                    134
 #define Z_AFTER_HOMING                           10
-#define Z_SAFE_HOMING_Y_POINT                    Y_CENTER
+#define Z_SAFE_HOMING_Y_POINT                    123
 #define Z_CLEARANCE_FOR_HOMING                   10
 #define Z_SAFE_HOMING
 
@@ -93,10 +93,10 @@
 //
 // Motion
 //
-#define DEFAULT_AXIS_STEPS_PER_UNIT              { 80, 80, 400, 715.12 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT              { 80, 80, 400, 845.5 }
 #define AXIS_RELATIVE_MODES                      { false, false, false, false }
-#define DEFAULT_MAX_FEEDRATE                     { 500, 500, 20, 30 }
-#define DEFAULT_MAX_ACCELERATION                 { 5000, 5000, 5000, 5000 }
+#define DEFAULT_MAX_FEEDRATE                     { 250, 250, 5, 100 }
+#define DEFAULT_MAX_ACCELERATION                 { 2500, 2500, 100, 5000 }
 #define INVERT_X_DIR                             true
 #define INVERT_Y_DIR                             false
 #define INVERT_Z_DIR                             true
@@ -169,7 +169,7 @@
 #define Z_PROBE_FEEDRATE_SLOW                    (Z_PROBE_FEEDRATE_FAST / 2)
 #define PROBE_OFFSET_ZMAX                        10
 #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
-#define NOZZLE_TO_PROBE_OFFSET                   { -24.25, -15, 0 }
+#define NOZZLE_TO_PROBE_OFFSET                   { -23.0, -14.5, 2.65 }
 #define Z_AFTER_PROBING                          10
 #define EXTRA_PROBING                            0
 #define USE_PROBE_FOR_Z_HOMING
@@ -247,9 +247,9 @@
 #define PIDTEMP
 #define PID_K1                                   0.95
 #define PID_MAX                                  255
-#define DEFAULT_Kd                               26.68
-#define DEFAULT_Ki                               3.93
-#define DEFAULT_Kp                               20.49
+#define DEFAULT_Kd                               32.35
+#define DEFAULT_Ki                               1.86
+#define DEFAULT_Kp                               15.55
 
 //
 // PID Temp
@@ -260,17 +260,20 @@
 // Bed Temp
 //
 #define MAX_BED_POWER                            255
-#define DEFAULT_bedKi                            14.29
+#define DEFAULT_bedKi                            15.87
 #define PIDTEMPBED
-#define DEFAULT_bedKp                            123.71
-#define DEFAULT_bedKd                            713.77
+#define DEFAULT_bedKp                            139.66
+#define DEFAULT_bedKd                            819.38
 
 //
 // Fans
 //
+#define SOFT_PWM_SCALE                           2
 #define E0_AUTO_FAN_PIN                          PC1
 #define EXTRUDER_AUTO_FAN_SPEED                  255
 #define EXTRUDER_AUTO_FAN_TEMPERATURE            50
+#define FAN_SOFT_PWM
+#define SOFT_PWM_DITHER
 #define FAN_MIN_PWM                              50
 
 //
@@ -314,7 +317,7 @@
 #define MESH_TEST_BED_TEMP                       60
 #define G26_RETRACT_MULTIPLIER                   1.0
 #define MESH_TEST_HOTEND_TEMP                    205
-#define GRID_MAX_POINTS_X                        6
+#define GRID_MAX_POINTS_X                        5
 #define G26_MESH_VALIDATION
 #define LEVELED_SEGMENT_LENGTH                   1.0
 #define G26_XY_FEEDRATE                          20

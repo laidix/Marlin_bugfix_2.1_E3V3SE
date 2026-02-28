@@ -756,9 +756,9 @@
     #define DEFAULT_Ki_LIST {   1.08,   1.08 }
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
-    #define DEFAULT_Kp 20.49
-    #define DEFAULT_Ki 3.93
-    #define DEFAULT_Kd 26.68
+    #define DEFAULT_Kp 15.55
+    #define DEFAULT_Ki 1.86
+    #define DEFAULT_Kd 32.35
 
   #endif
 #else
@@ -857,9 +857,9 @@
 
   // 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  #define DEFAULT_bedKp 123.71
-  #define DEFAULT_bedKi 14.29
-  #define DEFAULT_bedKd 713.77
+  #define DEFAULT_bedKp 139.66
+  #define DEFAULT_bedKi 15.87
+  #define DEFAULT_bedKd 819.38
 
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
@@ -1362,7 +1362,7 @@
  * Override with M92 (when enabled below)
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT     { 80, 80, 400, 715.12 } // { 80, 80, 400, 424.9 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT     { 80, 80, 400, 845.5 } // { 80, 80, 400, 424.9 }
 
 /**
  * Enable support for M92. Disable to save at least ~530 bytes of flash.
@@ -1374,7 +1374,7 @@
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 500, 500, 20, 30 }
+#define DEFAULT_MAX_FEEDRATE          { 250, 250, 5, 100 }
 
 #define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -1387,7 +1387,7 @@
  * Override with M201
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 5000, 5000, 5000, 5000 }
+#define DEFAULT_MAX_ACCELERATION      { 2500, 2500, 100, 5000 }
 
   #define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -1730,7 +1730,7 @@
  */
 // #define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
 #if ENABLED(PLATFORM_OFFSET)
- #define NOZZLE_TO_PROBE_OFFSET { -24.25, -15, 0 }
+ #define NOZZLE_TO_PROBE_OFFSET { -23.0, -14.5, 2.65 }
 #endif 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 // #define PROBING_TOOL 0
@@ -1992,8 +1992,8 @@
   // #define Y_MIN_POS -22       //Platform moves forward rock_20220927  - Forward, +Backward 2.5
 
   #if ENABLED(WUHAN_CHENGE_PLATFORM)  //Wuhan modified structure
-    #define X_MIN_POS    -13    //Platform moves left
-    #define  Y_MIN_POS   -15
+    #define X_MIN_POS    -6    //Platform moves left
+    #define  Y_MIN_POS   -14
   #else
     #define X_MIN_POS -11    //Platform moves left
     #define  Y_MIN_POS   -18 //Platform moves forward rock_20220927
@@ -2002,13 +2002,13 @@
 #define X_MIN_POS -4
 #define Y_MIN_POS -17
 #endif
-#define Z_MIN_POS 0
+#define Z_MIN_POS -3
 #if ENABLED(WUHAN_CHENGE_PLATFORM)  //Wuhan modified structure
-  #define X_MAX_POS X_BED_SIZE
+  #define X_MAX_POS 230
 #else
   #define X_MAX_POS X_BED_SIZE + 5
 #endif
-#define Y_MAX_POS Y_BED_SIZE + 7
+#define Y_MAX_POS 230
 #define Z_MAX_POS 250  //Since the slicing software does not limit the height of 250mm, it is temporarily increased by 5mm.  Rock——20230105  
 
 
@@ -2317,7 +2317,7 @@
 #if ANY(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 6
+  #define GRID_MAX_POINTS_X 5
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Probe along the Y axis, advancing X after each column
@@ -2473,8 +2473,8 @@
 #define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
-  #define Z_SAFE_HOMING_X_POINT X_CENTER  // (mm) X point for Z homing
-  #define Z_SAFE_HOMING_Y_POINT Y_CENTER  // (mm) Y point for Z homing
+  #define Z_SAFE_HOMING_X_POINT 134  // (mm) X point for Z homing
+  #define Z_SAFE_HOMING_Y_POINT 123  // (mm) Y point for Z homing
   //#define Z_SAFE_HOMING_POINT_ABSOLUTE  // Ignore home offsets (M206) for Z homing position
 #endif
 
@@ -3711,7 +3711,7 @@
  * which is not as annoying as with the hardware PWM. On the other hand, if this frequency
  * is too low, you should also increment SOFT_PWM_SCALE.
  */
-//#define FAN_SOFT_PWM
+#define FAN_SOFT_PWM
 
 /**
  * Incrementing this by 1 will double the software PWM frequency, affecting heaters, and
@@ -3719,14 +3719,14 @@
  * increment; at zero value, there are 128 effective control positions.
  * :[0,1,2,3,4,5,6,7]
  */
-#define SOFT_PWM_SCALE 0
+#define SOFT_PWM_SCALE 2
 
 /**
  * If SOFT_PWM_SCALE is set to a value higher than 0, dithering can be used to mitigate the
  * associated resolution loss. If enabled, some of the PWM cycles are stretched so on average
  * the desired duty cycle is attained.
  */
-//#define SOFT_PWM_DITHER
+#define SOFT_PWM_DITHER
 
 // @section extras
 
